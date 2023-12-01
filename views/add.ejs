@@ -1,0 +1,128 @@
+<%- include('partials/header.ejs'); -%>
+
+<header>
+  <div class="px-3 py-2 text-bg-dark border-bottom">
+    <div class="container">
+      <div
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
+        >
+          <h1>MY BOOKS</h1>
+        </a>
+
+        <ul
+          class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
+        >
+          <li>
+            <a href="/" class="nav-link text-secondary">
+              <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                <use xlink:href="#"></use>
+              </svg>
+              Books
+            </a>
+          </li>
+          <li>
+            <a href="/add" class="nav-link text-white">
+              <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                <use xlink:href="./add.ejs"></use>
+              </svg>
+              Add
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<div class="add-container">
+  <div class="col-md-7 col-lg-8">
+    <h4 class="mb-3">Add my book</h4>
+    <form class="needs-validation" action="/edit" method="post">
+      <div class="row g-3">
+
+        <div class="col-12">
+          <label for="email" class="form-label">Book name </label>
+          <input type="text" class="form-control" name="bookName" />
+          <div class="invalid-feedback">Please enter a valid book name.</div>
+        </div>
+
+        <div class="col-12">
+          <label for="email" class="form-label">Author </label>
+          <input type="text" class="form-control" name="authorName" />
+          <div class="invalid-feedback">Please enter a valid author name.</div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="cc-name" class="form-label">ISBN</label>
+          <input
+          name="isbn"
+            type="text"
+            class="form-control"
+            id="cc-name"
+            placeholder=""
+            required=""
+          />
+          <small class="text-body-secondary"
+            >ISBN as displayed on the book</small
+          >
+          <div class="invalid-feedback">ISBN is required</div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="cc-name" class="form-label">Date</label>
+          <input
+          name="date"
+            type="date"
+            class="form-control"
+            id="cc-name"
+            placeholder=""
+            required=""
+          />
+          <small class="text-body-secondary">Date you read the book</small>
+          <div class="invalid-feedback">ISBN is required</div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="cc-name" class="form-label">Score</label>
+
+          <select name="score" id="score" class="form-control">
+            <% for (i=1;i<11;i++){%>
+            <option value="<%=i%>"><%=i%></option>
+            <%}%>
+          </select>
+          <small class="text-body-secondary">Date you read the book</small>
+          <div class="invalid-feedback">ISBN is required</div>
+        </div>
+        <div class="col-12">
+          <label for="email" class="form-label">Notes from the book</label>
+          
+          <textarea  class="form-control" name="bookNotes" rows="4" cols="50">
+           
+            </textarea>
+          <div class="invalid-feedback">Please enter a valid book name.</div>
+        </div>
+
+        <div class="col-12">
+          <label for="email" class="form-label">Notes by you</label>
+          
+          <textarea  class="form-control" name="myNotes" rows="4" cols="50">
+    
+            </textarea>
+          <div class="invalid-feedback">Please enter a valid book name.</div>
+        </div>
+        
+
+      <button class="w-100 btn btn-primary btn-lg" type="submit">
+        Add the book
+      </button>
+    </form>
+    </div >
+  </div >   
+</div >
+
+<%- include('partials/footer.ejs'); -%>

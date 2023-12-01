@@ -1,0 +1,115 @@
+<%- include('partials/header.ejs'); -%>
+
+<header>
+  <div class="px-3 py-2 text-bg-dark border-bottom">
+    <div class="container">
+      <div
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
+        >
+          <h1>MY BOOKS</h1>
+        </a>
+
+        <ul
+          class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
+        >
+          <li>
+            <a href="#" id="booksLink" class="nav-link text-white">
+              <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                <use xlink:href="#"></use>
+              </svg>
+              Books
+            </a>
+          </li>
+
+          <li>
+            <a href="/add" class="nav-link text-secondary">
+              <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                <use xlink:href="#speedometer2"></use>
+              </svg>
+              Add
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="d-grid gap-2 d-sm-flex justify-content-sm-center button-sort">
+  <form action="/sortByScore" method="post">
+    <button
+      id="btn-sortByScore"
+      type="submit"
+      class="btn btn-primary btn-lg px-4 gap-3"
+      onclick="handler1()"
+    >
+      sort by score
+    </button>
+  </form>
+  <form action="/sortByDate" method="post">
+    <button
+      id="btn-sortByDate"
+      type="submit"
+      class="btn btn-outline-secondary btn-lg px-4"
+    >
+      sort by date
+    </button>
+  </form>
+</div>
+
+<% books.forEach((book)=> { %>
+<div class="book-container">
+  <div
+    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+  >
+    <div class="col p-4 d-flex flex-column position-static">
+      <h3 class="mb-0"><%=book.name%></h3>
+      <strong class="d-inline-block mb-2 text-primary-emphasis"
+        >by <%=book.author%></strong
+      >
+      <div class="mb-1 text-body-secondary">My score: <%=book.score%></div>
+      <div class="mb-1 text-body-secondary">
+        Date: <%=book.dateread.toDateString() %>
+      </div>
+      <p class="card-text mb-auto"><%=book.booknotes%></p>
+      <a
+        href="/readMore?isbn=<%=book.isbn%>"
+        class="icon-link gap-1 icon-link-hover stretched-link"
+      >
+        Continue reading
+        <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+      </a>
+    </div>
+    <div class="col-auto d-none d-lg-block">
+      <% const src="https://covers.openlibrary.org/b/isbn/"+book.isbn+"-M.jpg";
+      %>
+      <img class="book-image" src="<%=src%>" alt="" />
+      <title>Placeholder</title>
+      <rect width="100%" height="100%" fill="#55595c"></rect>
+    </div>
+  </div>
+</div>
+<% }); %> <%- include('partials/footer.ejs'); -%>
+
+<script>
+  function handler(){
+    if(<%- JSON.stringify(decider) %>==='date'){
+     document.getElementById("btn-sortByScore").classList.remove("btn-primary");
+  document
+    .getElementById("btn-sortByScore")
+    .classList.add("btn-outline-secondary");
+  document.getElementById("btn-sortByDate").classList.remove("btn-outline-secondary");
+  document.getElementById("btn-sortByDate").classList.add("btn-primary");
+  }
+
+  }
+
+
+
+
+  // function handler1() {
+</script>
